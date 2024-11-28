@@ -4,11 +4,12 @@ services:
   # Banco de dados MySQL para sua aplicação
   db:
     image: mysql:8.0
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 'root123'
-      MYSQL_DATABASE: 'itau'
-      MYSQL_USER: 'yuri'
-      MYSQL_PASSWORD: 'yuri123'
+        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - '3306:3306'
     volumes:

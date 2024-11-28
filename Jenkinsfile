@@ -1,7 +1,10 @@
 pipeline {
     agent any
     environment {
-
+        MYSQL_DATABASE = 'pagamento'   // Variáveis diretamente no Jenkinsfile
+        MYSQL_USER = 'root'
+        MYSQL_PASSWORD = ''
+        DB_PORTS = "3306:3306"
         DEPLOY_PROFILE = 'deploy' // Perfil para Deploy
     }
     stages {
