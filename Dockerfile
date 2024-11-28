@@ -21,7 +21,7 @@ WORKDIR /itau
 COPY --from=build /itau/target/*.jar itau.jar
 
 # Exponha a porta que a aplicação vai usar
-EXPOSE 8080
+EXPOSE 8081
 
 #criar o usuario do banco
 
