@@ -5,10 +5,10 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: itau
-      MYSQL_USER: yuri
-      MYSQL_PASSWORD: yuri123
+      MYSQL_ROOT_PASSWORD: 'root123'
+      MYSQL_DATABASE: 'itau'
+      MYSQL_USER: 'yuri'
+      MYSQL_PASSWORD: 'yuri123'
     ports:
       - '3306:3306'
     volumes:
