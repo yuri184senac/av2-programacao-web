@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: 'itau'
-      MYSQL_USER: mysql_user
-      MYSQL_PASSWORD: mysql_password
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root1234'
     ports:
       - '3306:3306'
     volumes:

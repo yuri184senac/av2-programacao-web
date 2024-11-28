@@ -23,7 +23,9 @@ COPY --from=build /itau/target/*.jar itau.jar
 # Exponha a porta que a aplicação vai usar
 EXPOSE 8080
 
+#criar o usuario do banco
+
+
 # Comando para rodar a aplicação
 ENTRYPOINT ["java", "-jar", "itau.jar"]
 
-RUN service mysql start && \ mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';"
