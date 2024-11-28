@@ -25,3 +25,5 @@ EXPOSE 8080
 
 # Comando para rodar a aplicação
 ENTRYPOINT ["java", "-jar", "itau.jar"]
+
+RUN  mysql; ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
