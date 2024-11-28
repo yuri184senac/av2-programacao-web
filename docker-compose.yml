@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Banco de dados MySQL para sua aplicação
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: itau
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # Aplicação
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8081:8081'
+
+    depends_on:
+      - db
+#      - rabbitmq
+
+  # PhpMyAdmin para gerenciar o banco MySQL
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db  # O nome do serviço do MySQL (db)
+      PMA_PORT: 3306
+    ports:
+      - '8082:80'
+    depends_on:
+      - db
+
+
+
+volumes:
+  mysql_data:
+

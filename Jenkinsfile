@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SONAR_PROFILE = 'sonar' // Perfil para SonarQube
+
         DEPLOY_PROFILE = 'deploy' // Perfil para Deploy
     }
     stages {
@@ -15,25 +15,12 @@ pipeline {
             }
         }
 
-        stage('SonarQube analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('sq1') {
-                        bat """
-                            mvn clean verify sonar:sonar ^
-                                -Dspring.profiles.active=${SONAR_PROFILE} ^
-                                -Dsonar.projectKey=sq1 ^
-                                -Dsonar.projectName="sq1"
-                        """
-                    }
-                }
-            }
-        }
+
 
         stage('Construir Imagem Docker') {
             steps {
                 script {
-                    def appName = 'av1'
+                    def appName = 'itau'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     bat "docker build --build-arg SPRING_PROFILES_ACTIVE=${DEPLOY_PROFILE} -t ${imageTag} ."
                 }
@@ -43,7 +30,7 @@ pipeline {
         stage('Fazer Deploy') {
             steps {
                 script {
-                    def appName = 'av1'
+                    def appName = 'itau'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     bat "docker stop ${appName} || exit 0"
                     bat "docker rm ${appName} || exit 0"
